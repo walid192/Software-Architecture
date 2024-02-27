@@ -1,0 +1,39 @@
+@startuml
+
+' two interfaces to respect SRP '
+interface Quackable {
+    + quack()
+}
+
+interface Swimmable {
+    + swim()
+}
+
+class Duck implements Quackable, Swimmable {
+    + quack()
+    + swim()
+}
+
+class ElectronicDuck implements Quackable, Swimmable {
+    - _on: boolean
+    + quack()
+    + swim()
+    + turnOn()
+    + turnOff()
+}
+
+class Pool {
+    + run()
+    - quackAndSwim(duck: Quackable & Swimmable)
+}
+
+Quackable <|.. Duck : <<implements>>
+Quackable <|.. ElectronicDuck : <<implements>>
+Swimmable <|.. Duck : <<implements>>
+Swimmable <|.. ElectronicDuck : <<implements>>
+
+
+Pool --> Quackable : uses
+Pool --> Swimmable : uses
+
+@enduml
