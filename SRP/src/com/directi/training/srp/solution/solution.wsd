@@ -1,0 +1,35 @@
+@startuml
+
+class Car {
+    - _id: String
+    - _model: String
+    - _brand: String
+    + Car(id: String, model: String, brand: String)
+    + getId(): String
+    + getModel(): String
+    + getBrand(): String
+}
+
+class CarDB {
+    - _carsDb: List<Car>
+    + CarRepository()
+    + getFromDb(carId: String): Car
+}
+
+class CarFormatter {
+    - _carsDb: List<Car>
+    + CarFormatter()
+    + getCarsNames(): String
+}
+
+class CarChoice {
+    - _carsDb: List<Car>
+    + CarAnalyzer()
+    + getBestCar(): Car
+}
+
+CarDB --> Car : uses
+CarFormatter --> Car : uses
+CarChoice --> Car : uses
+
+@enduml
