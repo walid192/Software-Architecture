@@ -13,14 +13,14 @@ public class Pool {
         swim(donSwimmable, electricSwimmable);
     }
 
-    private void quack(Quackable... ducks)
+    void quack(Quackable... ducks)
     {
         for (Quackable duck : ducks) {
             duck.quack();
         }
     }
 
-    private void swim(Swimmable... ducks)
+    void swim(Swimmable... ducks)
     {
         for (Swimmable duck : ducks) {
             duck.swim();
