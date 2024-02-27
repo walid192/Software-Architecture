@@ -24,7 +24,8 @@ class ElectronicDuck implements Quackable, Swimmable {
 
 class Pool {
     + run()
-    - quackAndSwim(duck: Quackable & Swimmable)
+    + swim()
+    + quack()
 }
 
 Quackable <|.. Duck : <<implements>>

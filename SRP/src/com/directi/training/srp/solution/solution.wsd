@@ -12,7 +12,7 @@ class Car {
 
 class CarDB {
     - _carsDb: List<Car>
-    + CarRepository()
+    + CarDB()
     + getFromDb(carId: String): Car
 }
 
@@ -24,7 +24,7 @@ class CarFormatter {
 
 class CarChoice {
     - _carsDb: List<Car>
-    + CarAnalyzer()
+    + CarChoice()
     + getBestCar(): Car
 }
 
