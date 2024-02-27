@@ -1,0 +1,54 @@
+@startuml
+
+interface Resource {
+  + markFree(resourceId: int)
+  + markBusy(resourceId: int)
+  + getSlotFindingStrategy(): SlotFindingStrategy
+}
+
+interface SlotFindingStrategy{
+  + findFreeSlot():int
+}
+
+class SpaceSlotFindingStrategy {
+  + findFreeSlot(): int
+}
+
+class TimeSlotFindingStrategy {
+  + findFreeSlot(): int
+}
+
+
+class ResourceAllocator {
+  + allocate(resourceType: Resource): int
+  + free(resourceType: Resource, resourceId: int)
+}
+
+class SpaceSlotResource {
+  - slotFindingStrategy: SlotFindingStrategy
+  + markFree(resourceId: int)
+  + markBusy(resourceId: int)
+  + findFree(): int
+}
+
+class TimeSlotResource {
+  - slotFindingStrategy: SlotFindingStrategy
+  + markFree(resourceId: int)
+  + markBusy(resourceId: int)
+  + getSlotFindingStrategy(): SlotFindingStrategy
+}
+
+Resource <|.. SpaceSlotResource : <<implements>>
+Resource <|.. TimeSlotResource : <<implements>>
+
+TimeSlotFindingStrategy <|.. SlotFindingStrategy : implements
+SpaceSlotFindingStrategy <|.. SlotFindingStrategy : implements
+
+Resource <-- SpaceSlotFindingStrategy : uses
+Resource <-- TimeSlotFindingStrategy : uses
+
+
+ResourceAllocator --> Resource
+ResourceAllocator --> SlotFindingStrategy : uses
+
+@enduml
