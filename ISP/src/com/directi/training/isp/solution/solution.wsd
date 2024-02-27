@@ -1,0 +1,58 @@
+@startuml
+
+interface Door {
+  + lock()
+  + unlock()
+  + open()
+  + close()
+}
+
+
+interface ProximitySensitive {
+  + proximityCallback()
+}
+
+interface Timed {
+  + timeOutCallback()
+}
+
+class SensingDoor implements  ProximitySensitive {
+  - _locked: boolean
+  - _opened: boolean
+  + SensingDoor(sensor: Sensor)
+  + lock()
+  + unlock()
+  + open()
+  + close()
+  + proximityCallback()
+  + operateDoor(Door door)
+}
+
+class TimedDoor implements Timed {
+  - _locked: boolean
+  - _opened: boolean
+  + TimedDoor(timer: Timer)
+  + lock()
+  + unlock()
+  + open()
+  + close()
+  + timeOutCallback()
+  + operateDoor(Door door)
+}
+
+class Timer {
+  + register(timeOut: long, door: Timed)
+}
+
+class Sensor {
+  + register(door: ProximitySensitive)
+  - isPersonClose(): boolean
+}
+
+Door <|.. ProximitySensitive : extends
+Door <|.. Timed : extends
+
+Timer --> TimedDoor : registers
+Sensor --> SensingDoor : registers
+
+@enduml
