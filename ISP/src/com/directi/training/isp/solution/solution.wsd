@@ -25,7 +25,6 @@ class SensingDoor implements  ProximitySensitive {
   + open()
   + close()
   + proximityCallback()
-  + operateDoor(Door door)
 }
 
 class TimedDoor implements Timed {
@@ -37,7 +36,6 @@ class TimedDoor implements Timed {
   + open()
   + close()
   + timeOutCallback()
-  + operateDoor(Door door)
 }
 
 class Timer {
