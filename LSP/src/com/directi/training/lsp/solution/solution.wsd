@@ -28,10 +28,7 @@ class Pool {
     + quack()
 }
 
-Quackable <|.. Duck : <<implements>>
-Quackable <|.. ElectronicDuck : <<implements>>
-Swimmable <|.. Duck : <<implements>>
-Swimmable <|.. ElectronicDuck : <<implements>>
+
 
 
 Pool --> Quackable : uses
