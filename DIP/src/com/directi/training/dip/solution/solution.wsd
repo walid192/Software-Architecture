@@ -1,0 +1,58 @@
+@startuml
+
+interface Reader {
+  + read(): String
+}
+
+interface Writer {
+  + write(data: String)
+}
+
+class NetworkReader {
+  - url: URL
+  + NetworkReader(protocol: String, host: String, file: String)
+  + read(): String
+}
+
+class FileWriter {
+  - writer: BufferedWriter
+  + FileWriter(filePath: String)
+  + write(data: String)
+  + close()
+}
+
+class FileReader {
+  - reader: BufferedReader
+  + FileReader(filePath: String)
+  + read(): String
+  + close()
+}
+
+class DatabaseWriter {
+  - database: MyDatabase
+  + write(data: String)
+}
+
+class EncodingModule {
+  + EncodingModule()
+  + encodeWithFiles()
+  + encodeBasedOnNetworkAndDatabase()
+  - performEncoding(data: String): String
+}
+
+class EncodingModuleClient {
+  + main(args: String[])
+}
+
+Reader <|.. NetworkReader
+Writer <|.. FileWriter
+Writer <|.. DatabaseWriter
+Reader <|.. FileReader
+
+EncodingModule *-- FileReader : _reader
+EncodingModule *-- FileWriter : _writer
+EncodingModule *-- DatabaseWriter : _databaseWriter
+EncodingModule *-- NetworkReader : _networkReader
+
+
+@enduml
